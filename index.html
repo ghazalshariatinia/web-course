@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Friends Entertainment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #ffffff;
+            --text-color: #101010;
+            --secondary-text-color: #3F3B3B;
+            --light-gray-bg: #f8f9fa;
+            --border-color: #c5b9b9;
+            --hero-title-color: #000000;
+            --service-detail-color: #959393;
+            --logo-square-color: black;
+            --logo-circle-color: blue;
+            --button-bg-color: #007bff;
+            --button-hover-color: #0056b3;
+        }
+
+        .dark-theme {
+            --background-color: #1a1a1a;
+            --text-color: #f0f0f0;
+            --secondary-text-color: #cccccc;
+            --light-gray-bg: #282828;
+            --border-color: #3f3f3f;
+            --hero-title-color: #ffffff;
+            --service-detail-color: #aaaaaa;
+            --logo-square-color: #f0f0f0;
+            --logo-circle-color: #ffaa00;
+            --button-bg-color: #009688;
+            --button-hover-color: #00796b;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding-top: 80px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s;
+        }
+
+        .navbar, .footer-nav {
+            background-color: var(--background-color) !important;
+            transition: background-color 0.3s;
+        }
+
+        .logo-square {
+            background-color: var(--logo-square-color);
+        }
+        .logo-circle {
+            background-color: var(--logo-circle-color);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            width: 45px;
+            height: 45px;
+            background-color: var(--button-bg-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 45px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1050;
+            transition: all 0.3s;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--button-hover-color);
+        }
+
+        .hero-section-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 5rem;
+            padding-bottom: 2rem;
+        }
+        .hero-title {
+            font-size: 80px;
+            font-weight: bold;
+            margin-top: -50px;
+            text-align: center;
+        }
+        .hero-title strong {
+            color: var(--hero-title-color);
+        }
+        .hero-text-container {
+            max-width: 600px;
+            padding-top: 3rem;
+        }
+        .hero-text-container p {
+            color: var(--secondary-text-color) !important;
+            text-align: center;
+        }
+
+        .navbar-light .navbar-nav .nav-link {
+            color: var(--secondary-text-color);
+        }
+        .navbar-light .navbar-nav .nav-link:hover {
+            color: var(--text-color);
+        }
+
+        .service-section {
+            padding-top: 8rem;
+        }
+        .service-details h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+        .service-details p {
+            font-size: 24px;
+            color: var(--service-detail-color);
+        }
+        .service-list p {
+            font-size: 20px;
+            color: var(--secondary-text-color) !important;
+        }
+        .image-content img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        hr {
+            border-top: 1px solid var(--border-color);
+        }
+        .footer-bottom-nav {
+            border-top: 1px solid var(--border-color) !important;
+        }
+        .footer-nav {
+            border-top: 1px solid var(--border-color) !important;
+        }
+        .footer-left-section {
+            padding-top: 2rem;
+        }
+        .footer-left-section h3 {
+            font-size: 24px;
+            color: var(--secondary-text-color) !important;
+            padding-top: 1rem;
+        }
+        .footer-left-section strong {
+            font-size: 24px;
+            color: var(--text-color) !important;
+        }
+        .footer-right-section a {
+            font-size: 14px;
+            color: var(--secondary-text-color) !important;
+            text-decoration: none;
+            display: block;
+            padding-top: 0.25rem;
+        }
+
+        .btn-primary {
+            background-color: var(--button-bg-color) !important;
+            border-color: var(--button-bg-color) !important;
+        }
+        .btn-primary:hover {
+            background-color: var(--button-hover-color) !important;
+            border-color: var(--button-hover-color) !important;
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 767.98px) {
+            .hero-title {
+                font-size: 48px;
+                margin-top: 0;
+            }
+            .service-section {
+                padding-top: 3rem;
+            }
+            .service-details h1, .service-details p, .service-list {
+                text-align: center;
+            }
+            .image-content {
+                order: -1;
+                padding-bottom: 1rem;
+            }
+            .footer-nav .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-right-section {
+                padding-top: 2rem;
+                text-align: center;
+            }
+            .footer-left-section {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo-square"></div>
+                <div class="logo-circle"></div>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Who We Are</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Our Works</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Say Hello</a></li>
+
+                    <li class="nav-item ms-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="themeToggle">
+                            <label class="form-check-label" for="themeToggle">🌙</label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="container">
+
+    <div class="hero-section-wrapper">
+        <img style="width: 300px; height: 280px;" src="img/img_3.png" alt="Logo">
+        <br>
+        <h1 class="hero-title"><strong>Our Services</strong></h1>
+        <div class="hero-text-container">
+            <p style="text-align: center;">
+                We believe behind every good work there is a strong relationship of communication and synergy. Producing incredible ideas and creativities between the team.
+            </p>
+            <p style="text-align: center;">We work with brands and companies to help them connect to their audience with the use of a visual identity, publication design, website design & development, and mobile apps design & development for a varied list of clients.</p>
+        </div>
+    </div>
+
+    <hr class="mt-5 mb-5">
+
+    <div class="row service-section align-items-center fade-in-section">
+        <div class="col-12 col-md-6 order-md-last image-content">
+            <img src="img/img_4.png" class="img-fluid" alt="Brand Identity Mockup">
+        </div>
+        <div class="col-12 col-md-6 service-details">
+            <h1><strong>Brands</strong></h1>
+            <p>We will uncover and highlight the things for your company and we will attempting to rebrand the identity if required to make it more meaningful</p>
+            <div class="service-list pt-4">
+                <p><strong>/ Visual Identity & Logo Design</strong></p>
+                <p><strong>/ Visual Guideline</strong></p>
+                <p><strong>/ Brand Identity</strong></p>
+                <p><strong>/ Brand Applications</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row service-section align-items-center fade-in-section">
+        <div class="col-12 col-md-6 order-first image-content">
+            <img src="img/img.png" class="img-fluid" alt="UI/UX Design Mockup">
+        </div>
+        <div class="col-12 col-md-6 order-md-last service-details">
+            <h1><strong>UI/UX Design</strong></h1>
+            <p>Through the research and also “try and error attempt”, we will provide you the high quality user interface for your website and apps.</p>
+            <div class="service-list pt-4">
+                <p><strong>/ Web Design</strong></p>
+                <p><strong>/ Apps Design</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row service-section align-items-center fade-in-section">
+        <div class="col-12 col-md-6 order-md-last image-content">
+            <img src="img/img_1.png" class="img-fluid" alt="Website Design Mockup">
+        </div>
+        <div class="col-12 col-md-6 service-details">
+            <h1><strong>Wensite</strong></h1>
+            <p>With the power of WordPress, we offer you the high quality website for your company or brands and ensure everything works as you expected, including company website, e-commerce, product landing page or news and magazine website.</p>
+            <div class="service-list pt-4">
+                <p><strong>/ Landing Page</strong></p>
+                <p><strong>/ Company Website</strong></p>
+                <p><strong>/ Product Landing Page</strong></p>
+                <p><strong>/ Magazine / News Website</strong></p>
+                <p><strong>/ Ecommerce Website</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row service-section align-items-center fade-in-section">
+        <div class="col-12 col-md-6 order-first image-content">
+            <img src="img/img_6.png" class="img-fluid" alt="Mobile App Development Mockup">
+        </div>
+        <div class="col-12 col-md-6 order-md-last service-details">
+            <h1><strong>Mobile Apps</strong></h1>
+            <p>We will digitalize your business through the apps to make sure your business can reach the potential level that you expected.</p>
+            <div class="service-list pt-4">
+                <p><strong>/ Android Apps</strong></p>
+                <p><strong>/ iOS Apps</strong></p>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer class="mt-5 pt-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white footer-nav">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center align-items-md-start">
+
+            <div class="footer-left-section">
+                <div class="logo-container">
+                    <div class="logo-square"></div>
+                    <div class="logo-circle"></div>
+                </div>
+                <h3>Have a project in mind?</h3>
+                <p><strong>Hit us up!</strong></p>
+                <a href="#" class="btn btn-primary mt-2">Start a new project</a>
+            </div>
+
+            <div class="footer-right-section d-flex flex-column align-items-center align-items-md-start">
+                <a href="#">Home</a>
+                <a href="#">Who We Are</a>
+                <a href="#">Our Work</a>
+                <a href="#">Services</a>
+                <a href="#">Say Hello</a>
+            </div>
+
+        </div>
+    </nav>
+
+    <div class="footer-bottom-nav">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+            <div class="container d-flex justify-content-between align-items-center">
+                <img class="left-element" style="width: 23px; height: 23px;" src="img/img_2.png" alt="Logo">
+                <p class="right-element m-0">© 2025 Homework</p>
+            </div>
+        </nav>
+    </div>
+</footer>
+
+<button class="back-to-top" id="backToTopBtn" title="Go to top">
+    &uarr;
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('.fade-in-section');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2
+        };
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        const backToTopButton = document.getElementById('backToTopBtn');
+        const scrollThreshold = 100;
+
+        window.onscroll = function() {
+            if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        };
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-theme');
+            themeToggle.checked = true;
+        }
+
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                body.classList.add('dark-theme');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-theme');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    });
+</script>
+</body>
+</html>
